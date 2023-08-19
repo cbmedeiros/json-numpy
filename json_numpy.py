@@ -4,7 +4,6 @@ from base64 import b64decode, b64encode
 import numpy as np
 from numpy.lib.format import dtype_to_descr, descr_to_dtype
 
-
 def default(obj):
     if isinstance(obj, (np.ndarray, np.generic)):
         return {
@@ -12,7 +11,9 @@ def default(obj):
             'dtype': dtype_to_descr(obj.dtype),
             'shape': obj.shape
         }
-    raise TypeError(f'Object of type {type(obj)} is not JSON serializable')
+    raise TypeError('Object of type {} is not JSON serializable'.format(type(obj)))
+
+
 
 
 def object_hook(dct):
